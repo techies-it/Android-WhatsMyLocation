@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="it.techies.whatsmylocation.WelcomeFragment"
+        android:name="it.techies.whatsmylocation.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -39,7 +39,11 @@
         android:label="fragment_thanks"
         tools:layout="@layout/fragment_thanks" >
         <action
-            android:id="@+id/action_thanksFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            android:id="@+id/action_thanksFragment_to_dashboardFragment2"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 </navigation>
