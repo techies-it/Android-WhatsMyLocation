@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="it.techies.whatsmylocation.DashboardFragment"
+        android:name="it.techies.whatsmylocation.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
