@@ -13,7 +13,20 @@
         android:id="@+id/dashboard_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_bright"
         tools:context=".dashboard.DashboardFragment">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/progress_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:indicatorName="BallClipRotateMultipleIndicator"
+            app:layout_constraintBottom_toTopOf="@+id/tv_label_timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_location" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -33,6 +46,7 @@
             android:layout_marginTop="24dp"
             android:text="You are at "
             android:textSize="24sp"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +56,13 @@
             android:id="@+id/tv_user_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@{dashboardViewModel.location}"
-            android:textSize="22sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@android:color/white"
+            android:text="@{dashboardViewModel.address}"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="56dp"
+            android:onClick="@{()-> dashboardViewModel.onStopTracking()}"
             android:text="Stop"
+            android:background="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -73,6 +93,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_label_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="Location update after :"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_location" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="68dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="@{dashboardViewModel.currentTimeString}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_label_timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_timer"
+            app:layout_constraintTop_toTopOf="@+id/tv_label_timer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

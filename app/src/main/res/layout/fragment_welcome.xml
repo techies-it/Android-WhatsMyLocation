@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        android:background="@android:color/holo_blue_bright"
         tools:context=".welcome.WelcomeFragment">
 
         <TextView
@@ -17,6 +18,7 @@
             android:layout_marginTop="140dp"
             android:text="Welcome"
             android:textSize="28sp"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:gravity="center"
-            android:text="You are welcome to location tracking app . Press start button to start tracker"
+            android:text="You are welcome to location tracking app. Press start button to start tracker"
             android:textSize="18sp"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,13 +43,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="152dp"
-            android:text="Start"
-            android:enabled="false"
             android:clickable="false"
+            android:enabled="false"
+            android:text="Start"
+            android:background="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
+            app:layout_constraintVertical_bias="0.366" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

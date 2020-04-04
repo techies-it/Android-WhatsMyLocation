@@ -50,4 +50,10 @@ dependencies {
 
     //Location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    // API call
+    implementation 'com.android.volley:volley:1.1.1'
+
+    // loader animation
+    implementation 'com.wang.avi:library:2.1.3'
 }

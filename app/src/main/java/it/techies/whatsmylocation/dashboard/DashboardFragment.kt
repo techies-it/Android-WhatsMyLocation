@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import it.techies.whatsmylocation.R
 import it.techies.whatsmylocation.databinding.FragmentDashboardBinding
 
@@ -36,7 +39,8 @@ class DashboardFragment : Fragment() {
         mViewModelFactory = DashboardViewModelFactory(activity)
 
         // Initialise view model
-        mViewModel = ViewModelProvider(this,mViewModelFactory).get(DashboardViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mViewModelFactory)
+            .get(DashboardViewModel::class.java)
 
         // Set the view model for data binding - this allows the bound layout access
         // to all the data in the ViewModel
@@ -46,7 +50,24 @@ class DashboardFragment : Fragment() {
         // This is used so that the binding can observe LiveData updates
         mBinding.lifecycleOwner = viewLifecycleOwner
 
+        mViewModel.eventTrackerStop.observe(viewLifecycleOwner,
+            Observer { hasStoped -> if (hasStoped) stopTracker() })
+
+        mViewModel.showLoader.observe(viewLifecycleOwner, Observer { loaderShow ->
+            if (loaderShow) {
+                mBinding.progressLoader.visibility = View.VISIBLE
+            } else {
+                mBinding.progressLoader.visibility = View.GONE
+            }
+        })
+
         return mBinding.root
+    }
+
+    private fun stopTracker() {
+        Toast.makeText(activity, "Tracker Stopped!", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_dashboardFragment_to_thanksFragment)
+        mViewModel.onStopTrackingFinish()
     }
 
 }
