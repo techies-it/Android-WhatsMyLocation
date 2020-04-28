@@ -27,7 +27,7 @@ import org.json.JSONObject
 
 class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
 
-    private lateinit var mContext: Context
+    private var mContext: Context = context
 
     // To get device location
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -67,9 +67,6 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
         get() = _showLoader
 
     init {
-        _address.value = "Searching..."
-        _showLoader.value = LOADER_SHOW_YES
-        mContext = context
 
         // To get device current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext)
@@ -145,9 +142,10 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
      */
     fun onStopTrackingFinish() {
         timer.cancel()
+        _location.value = null
+        _address.value = "Searching..."
         _currentTime.value = DONE // End timer
         _eventTrackerStop.value = TRACKER_STOP_NO
-        _address.value = "Searching..."
     }
 
     /**
@@ -180,6 +178,8 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
         }else{
             Toast.makeText(mContext, error.message, Toast.LENGTH_SHORT).show()
         }
+
+        getLocation() // Get device location
 
     }
 
@@ -219,7 +219,7 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
      */
     private fun getURL(lat: String, long: String): String {
         return "https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?" +
-                "prox=$lat%2C$long%2C250&mode=retrieveAddresses&maxresults=1" +
+                "prox=$lat%2C$long%2C100&mode=retrieveAddresses&maxresults=1" +
                 "&gen=9&apiKey=MgH9hsO4vTA36Kd-Dz0iDmW5DglJen-TUPEiZDChPZg"
     }
 

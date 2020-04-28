@@ -66,8 +66,8 @@ class DashboardFragment : Fragment() {
 
     private fun stopTracker() {
         Toast.makeText(activity, "Tracker Stopped!", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(R.id.action_dashboardFragment_to_thanksFragment)
         mViewModel.onStopTrackingFinish()
+        findNavController().navigate(R.id.action_dashboardFragment_to_thanksFragment)
     }
 
 }
