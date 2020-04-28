@@ -9,134 +9,128 @@
             type="it.techies.whatsmylocation.dashboard.DashboardViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/dashboard_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@android:color/white"
         tools:context=".dashboard.DashboardFragment">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_traveler"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="62dp"
+            android:src="@drawable/ic_dashboard_vector"/>
+
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="You are at"
+            android:fontFamily="@font/gilroy_extra_bold"
+            android:layout_centerHorizontal="true"
+            android:textSize="26sp"
+            android:layout_below="@+id/iv_traveler"
+            android:textColor="@color/title_font" />
+
+        <TextView
+            android:id="@+id/tv_user_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_heading"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:text="@{dashboardViewModel.address}"
+            android:textColor="@color/address_font"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="207dp"
+            android:id="@+id/bottom_bg"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/dashboard_bg"/>
+
+        <TextView
+            android:id="@+id/tv_label_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Location update after"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/bottom_bg"
+            android:layout_marginBottom="68dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/sub_title_font"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="@{dashboardViewModel.currentTimeString}"
+            android:textSize="40sp"
+            android:fontFamily="@font/gilroy_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/bottom_bg"
+            android:layout_marginTop="-52dp"
+            android:background="@drawable/puple_timer_bg"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/imageView"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="-16.5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/tv_time"
+            app:lottie_autoPlay="true"
+            android:padding="0.1dp"
+            android:background="@drawable/round_bg"
+            app:lottie_fileName="key_frame.json"
+            app:lottie_loop="true" />
+        
+
+
+        <Button
+            android:id="@+id/bt_stop"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:onClick="@{()-> dashboardViewModel.onStopTracking()}"
+            android:text="Stop Tracking"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/red_button_bg"/>
+
+
 
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/progress_loader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:indicatorName="BallClipRotateMultipleIndicator"
-            app:layout_constraintBottom_toTopOf="@+id/tv_label_timer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_location" />
+            app:indicatorName="BallClipRotateMultipleIndicator"/>
 
-        <!--<ImageView
-            android:id="@+id/imageView"
-            android:layout_width="171dp"
-            android:layout_height="142dp"
-            android:layout_marginTop="44dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/location" />-->
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="location.json"
-            app:lottie_loop="true" />
 
-        <TextView
-            android:id="@+id/tv_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="You are at "
-            android:textSize="24sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <TextView
-            android:id="@+id/tv_user_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="@android:color/white"
-            android:text="@{dashboardViewModel.address}"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
 
-        <Button
-            android:id="@+id/bt_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="56dp"
-            android:onClick="@{()-> dashboardViewModel.onStopTracking()}"
-            android:text="Stop"
-            android:background="@android:color/holo_red_light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_location"
-            app:layout_constraintVertical_bias="0.37" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="405dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_label_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="136dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:text="Location update after :"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@+id/tv_time"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_location" />
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="68dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:text="@{dashboardViewModel.currentTimeString}"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_label_timer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_label_timer"
-            app:layout_constraintTop_toTopOf="@+id/tv_label_timer" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
 
 </layout>

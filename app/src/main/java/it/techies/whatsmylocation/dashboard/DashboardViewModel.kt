@@ -35,16 +35,10 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     // Timer to get location update
     private val timer: CountDownTimer
 
-    // countdown time
-    private val _currentTime = MutableLiveData<Long>()
-    private val currentTime: LiveData<Long>
-        get() = _currentTime
-
     // The String version of the current time
+    private val _currentTimeString = MutableLiveData<String>()
     val currentTimeString: LiveData<String>
-        get() = Transformations.map(currentTime) { time ->
-            DateUtils.formatElapsedTime(time)
-        }
+    get() = _currentTimeString
 
     // To set and get location address in string
     private val _address = MutableLiveData<String>()
@@ -75,7 +69,6 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
         // Timer to update device location after 2 minutes
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onFinish() {
-                _currentTime.value = COUNTDOWN_TIME // Reset timer
                 getLocation() // Get device location
                 start() // restart timer
             }
@@ -84,9 +77,9 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
                 /**
                  * The millisUntilFinished is the amount of time until the
                  * timer is finished in milliseconds. Convert millisUntilFinished
-                 * to seconds and assign it to _currentTime.
+                 * to seconds and assign it to _currentTimeString.
                  */
-                _currentTime.value = millisUntilFinished / ONE_SECOND // Update timer value
+                _currentTimeString.value = (millisUntilFinished / ONE_SECOND).toString() // Update timer value
             }
 
         }.start()
@@ -144,7 +137,6 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
         timer.cancel()
         _location.value = null
         _address.value = "Searching..."
-        _currentTime.value = DONE // End timer
         _eventTrackerStop.value = TRACKER_STOP_NO
     }
 

@@ -3,58 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/welcome_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@android:color/white"
         tools:context=".welcome.WelcomeFragment">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_welcome_bg" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/welcome_title"
+            android:layout_marginBottom="32dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_welcome_vector"/>
+
 
         <TextView
             android:id="@+id/welcome_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_alignBottom="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
             android:text="Welcome"
-            android:textSize="28sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:fontFamily="@font/gilroy_extra_bold"
+            android:textColor="@color/title_font"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="You are welcome to location tracking app. Press start button to start tracker"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+            android:fontFamily="@font/gilroy_regular"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/iv_bg"
+            android:text="You are welcome to location\ntracking app."
+            android:textSize="16sp"
+            android:textColor="@color/sub_title_font"/>
 
         <Button
             android:id="@+id/bt_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="152dp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/green_button_bg"
             android:clickable="false"
             android:enabled="false"
-            android:text="Start"
-            android:background="@android:color/holo_red_light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description"
-            app:layout_constraintVertical_bias="0.366" />
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="53dp"
+            android:text="Start Tracking"
+            android:fontFamily="@font/gilroy_medium"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </RelativeLayout>
 
 </layout>
