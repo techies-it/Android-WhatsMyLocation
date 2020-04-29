@@ -3,7 +3,7 @@
     <item android:state_pressed="true" >
         <shape>
 
-            <solid android:color="#AC701C"/>
+            <solid android:color="@color/orange_button_press"/>
             <corners
                     android:radius="10dp" />
             <padding
@@ -15,7 +15,7 @@
     </item>
     <item>
         <shape>
-            <solid android:color="#FAA021"/>
+            <solid android:color="@color/orange_button_normal"/>
             <corners
                     android:radius="10dp" />
             <padding

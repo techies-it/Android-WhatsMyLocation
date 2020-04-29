@@ -4,62 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="thanksViewModel"
             type="it.techies.whatsmylocation.thankyou.ThanksViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/thanks_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:background="@android:color/holo_blue_bright"
-        tools:context=".thankyou.ThanksFragment" >
+        android:background="@android:color/white"
+        tools:context=".thankyou.ThanksFragment">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_thank_you_bg" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_label_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:src="@drawable/ic_thanks_vector" />
 
 
         <TextView
             android:id="@+id/tv_label_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:text="Thank You"
-            android:textSize="28sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_alignBottom="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/gilroy_extra_bold"
+            android:text="@string/title_thank_you"
+            android:textColor="@color/title_font"
+            android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/tv_label_description"
+            android:id="@+id/tv_sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_below="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
             android:gravity="center"
-            android:textColor="@android:color/white"
-            android:text="For using WhatsMyLocation app. Press restart button, if you want to start tracker again"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
+            android:fontFamily="@font/roboto"
+            android:text="@string/thanks_sub_title_1"
+            android:textColor="@color/address_font"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sub_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:fontFamily="@font/gilroy_medium"
+            android:text="@string/thanks_sub_title_2"
+            android:textColor="@color/sub_title_font"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/bt_restart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="152dp"
-            android:text="Restart"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="53dp"
+            android:layout_height="56dp"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/gilroy_medium"
+            android:background="@drawable/orange_button_bg"
             android:onClick="@{() -> thanksViewModel.onRestartTracker()}"
-            android:background="@android:color/holo_red_light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_description"
-            app:layout_constraintVertical_bias="0.314" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="@string/bt_restart"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
 
 </layout>

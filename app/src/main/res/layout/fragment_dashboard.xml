@@ -43,6 +43,8 @@
             android:layout_below="@+id/tv_heading"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@{dashboardViewModel.address}"
@@ -61,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Location update after"
+            android:text="@string/tv_location_update_after"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/bottom_bg"
             android:layout_marginBottom="68dp"
@@ -103,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:onClick="@{()-> dashboardViewModel.onStopTracking()}"
-            android:text="Stop Tracking"
+            android:text="@string/bt_stop_tracking"
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -120,7 +122,9 @@
             android:id="@+id/progress_loader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
+            app:indicatorColor="@color/red_button_normal"
             app:indicatorName="BallClipRotateMultipleIndicator"/>
 
 

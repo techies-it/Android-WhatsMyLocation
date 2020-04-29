@@ -3,4 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="thanks_sub_title_1">For using WhatsMyLocation app.</string>
+    <string name="thanks_sub_title_2">Press restart button, if you want\nto start tracker again.</string>
+    <string name="title_thank_you">Thank You</string>
+    <string name="tv_location_update_after">Location update after</string>
+    <string name="bt_stop_tracking">Stop Tracking</string>
+    <string name="bt_restart">Restart</string>
+    <string name="tv_title_welcome">Welcome</string>
+    <string name="tv_sub_title_you_are_welcome">You are welcome to location\ntracking app.</string>
+    <string name="bt_start_tracking">Start Tracking</string>
 </resources>

@@ -34,7 +34,7 @@
             android:layout_alignBottom="@+id/iv_bg"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
-            android:text="Welcome"
+            android:text="@string/tv_title_welcome"
             android:fontFamily="@font/gilroy_extra_bold"
             android:textColor="@color/title_font"
             android:textSize="24sp" />
@@ -48,7 +48,7 @@
             android:fontFamily="@font/gilroy_regular"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/iv_bg"
-            android:text="You are welcome to location\ntracking app."
+            android:text="@string/tv_sub_title_you_are_welcome"
             android:textSize="16sp"
             android:textColor="@color/sub_title_font"/>
 
@@ -64,7 +64,7 @@
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="53dp"
-            android:text="Start Tracking"
+            android:text="@string/bt_start_tracking"
             android:fontFamily="@font/gilroy_medium"
             android:textAllCaps="false"
             android:textColor="@android:color/white"/>

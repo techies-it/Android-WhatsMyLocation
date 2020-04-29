@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@android:color/white</color>
-    <color name="colorPrimaryDark">#F9F9F9</color>
+    <color name="colorPrimaryDark">#CCCACA</color>
     <color name="colorAccent">#03DAC5</color>
     
     <color name="title_font">#3E3E3E</color>
     <color name="sub_title_font">#818181</color>
     <color name="address_font">#3E3E3E</color>
     <color name="location_update_font">#A7A7A7</color>
-    <color name="bt_font">#FFFFFF</color>
     <color name="red_button_press">#A82C48</color>
     <color name="red_button_normal">#F24168</color>
+    <color name="green_button_press">#428C6A</color>
+    <color name="green_button_normal">#53D599</color>
+    <color name="orange_button_press">#AC701C</color>
+    <color name="orange_button_normal">#FAA021</color>
+    <color name="purple_bg">#866DFF</color>
+    <color name="grey_bg">#F9F9F9</color>
 
 
 </resources>

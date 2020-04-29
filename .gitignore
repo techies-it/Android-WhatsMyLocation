@@ -54,3 +54,4 @@ proguard/
 
 # API header key
 /app/src/main/java/com/ijura/mobilesecurity/constants/APIHeaderDate.kt
+/app/release/output.json

@@ -4,6 +4,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/androidtaran/TaranWork/OfficeProjects/2020/WhatsMyLocation/WhatsMyLocation.jks')
+            storePassword 'WhatsMyLocation'
+            keyAlias = 'WhatsMyLocation'
+            keyPassword 'WhatsMyLocation'
+        }
+    }
     compileSdkVersion 29
 
 
@@ -19,7 +27,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
