@@ -12,4 +12,5 @@
     <string name="tv_title_welcome">Welcome</string>
     <string name="tv_sub_title_you_are_welcome">You are welcome to location\ntracking app.</string>
     <string name="bt_start_tracking">Start Tracking</string>
+    <string name="tv_title_you_are_at">You are at</string>
 </resources>

@@ -12,7 +12,7 @@ class Constants {
         const val ONE_SECOND = 1000L
 
         // Total time for the game
-        const val COUNTDOWN_TIME = 60*1000L
+        const val COUNTDOWN_TIME = 2*60*1000L
 
         // Key timer start/stop
         const val TRACKER_STOP_YES = true

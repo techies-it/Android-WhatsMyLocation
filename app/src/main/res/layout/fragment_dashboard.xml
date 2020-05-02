@@ -21,15 +21,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/iv_traveler"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="62dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/ic_dashboard_vector"/>
 
         <TextView
             android:id="@+id/tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="You are at"
+            android:layout_marginTop="20dp"
+            android:text="@string/tv_title_you_are_at"
             android:fontFamily="@font/gilroy_extra_bold"
             android:layout_centerHorizontal="true"
             android:textSize="26sp"
@@ -53,7 +53,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="207dp"
+            android:layout_height="227dp"
             android:id="@+id/bottom_bg"
             android:layout_alignParentBottom="true"
             android:src="@drawable/dashboard_bg"/>
@@ -109,13 +109,23 @@
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="53dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginBottom="73dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginStart="45dp"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/red_button_bg"/>
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
 
 
         <com.wang.avi.AVLoadingIndicatorView
@@ -126,14 +136,6 @@
             android:layout_gravity="center_horizontal"
             app:indicatorColor="@color/red_button_normal"
             app:indicatorName="BallClipRotateMultipleIndicator"/>
-
-
-
-
-
-
-
-
 
     </RelativeLayout>
 

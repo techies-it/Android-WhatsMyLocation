@@ -10,10 +10,10 @@
     </style>
 
 
-    <!--<style name="AppTheme.BrandedLaunch" parent="AppTheme">
+    <style name="AppTheme.BrandedLaunch" parent="AppTheme">
 
         <item name="android:windowBackground">@drawable/splash_screen</item>
 
-    </style>-->
+    </style>
 
 </resources>

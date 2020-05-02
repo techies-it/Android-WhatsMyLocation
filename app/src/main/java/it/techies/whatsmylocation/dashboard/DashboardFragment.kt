@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import it.techies.whatsmylocation.R
 import it.techies.whatsmylocation.databinding.FragmentDashboardBinding
 
@@ -22,6 +25,7 @@ class DashboardFragment : Fragment() {
 
     private lateinit var mViewModel: DashboardViewModel
     private lateinit var mViewModelFactory: DashboardViewModelFactory
+    private var mAdView : AdView?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,11 @@ class DashboardFragment : Fragment() {
             container,
             false
         )
+
+        MobileAds.initialize(activity) {}
+        mAdView = mBinding.root.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView?.loadAd(adRequest)
 
         mViewModelFactory = DashboardViewModelFactory(activity)
 
@@ -68,6 +77,27 @@ class DashboardFragment : Fragment() {
         Toast.makeText(activity, "Tracker Stopped!", Toast.LENGTH_SHORT).show()
         mViewModel.onStopTrackingFinish()
         findNavController().navigate(R.id.action_dashboardFragment_to_thanksFragment)
+    }
+
+    override fun onPause() {
+        if (mAdView != null) {
+            mAdView?.pause()
+        }
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mAdView != null) {
+            mAdView?.resume()
+        }
+    }
+
+    override fun onDestroy() {
+        if (mAdView != null) {
+            mAdView?.destroy()
+        }
+        super.onDestroy()
     }
 
 }
