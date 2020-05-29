@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "55409406941",
+    "firebase_url": "https://whatsmylocation-4da88.firebaseio.com",
+    "project_id": "whatsmylocation-4da88",
+    "storage_bucket": "whatsmylocation-4da88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55409406941:android:33d5256c2f38a005e8bc34",
+        "android_client_info": {
+          "package_name": "it.techies.whatsmylocation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55409406941-gfofo7fdrjorpamrm5eh006f4ton7rmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP5k9fwWNz_M7s_c3qzdTo-G7LHLS25K8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55409406941-gfofo7fdrjorpamrm5eh006f4ton7rmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

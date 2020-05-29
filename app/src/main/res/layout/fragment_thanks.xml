@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ThanksFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="thanksViewModel"
+            type="it.techies.whatsmylocation.thankyou.ThanksViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/thanks_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@android:color/white"
+        tools:context=".thankyou.ThanksFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_thank_you_bg" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_label_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:src="@drawable/ic_thanks_vector" />
+
+
+        <TextView
+            android:id="@+id/tv_label_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/gilroy_extra_bold"
+            android:text="@string/title_thank_you"
+            android:textColor="@color/title_font"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="@string/thanks_sub_title_1"
+            android:textColor="@color/address_font"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sub_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:fontFamily="@font/gilroy_medium"
+            android:text="@string/thanks_sub_title_2"
+            android:textColor="@color/sub_title_font"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/bt_restart"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="73dp"
+            android:layout_height="56dp"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/gilroy_medium"
+            android:background="@drawable/orange_button_bg"
+            android:onClick="@{() -> thanksViewModel.onRestartTracker()}"
+            android:text="@string/bt_restart"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
+
+</layout>

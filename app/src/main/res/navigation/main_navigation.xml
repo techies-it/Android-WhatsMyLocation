@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="it.techies.whatsmylocation.WelcomeFragment"
+        android:name="it.techies.whatsmylocation.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -16,12 +16,14 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="true"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popEnterAnim="@anim/slide_in_right_pop"
+            app:popExitAnim="@anim/slide_out_left_pop"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="it.techies.whatsmylocation.DashboardFragment"
+        android:name="it.techies.whatsmylocation.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -30,16 +32,22 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="true"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popEnterAnim="@anim/slide_in_right_pop"
+            app:popExitAnim="@anim/slide_out_left_pop"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/thanksFragment"
-        android:name="it.techies.whatsmylocation.ThanksFragment"
+        android:name="it.techies.whatsmylocation.thankyou.ThanksFragment"
         android:label="fragment_thanks"
         tools:layout="@layout/fragment_thanks" >
         <action
             android:id="@+id/action_thanksFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right_pop"
+            app:popExitAnim="@anim/slide_out_left_pop" />
     </fragment>
 </navigation>
