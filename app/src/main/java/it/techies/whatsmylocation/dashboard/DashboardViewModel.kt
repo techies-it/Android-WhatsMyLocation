@@ -212,7 +212,7 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     private fun getURL(lat: String, long: String): String {
         return "https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?" +
                 "prox=$lat%2C$long%2C100&mode=retrieveAddresses&maxresults=1" +
-                "&gen=9&apiKey=MgH9hsO4vTA36Kd-Dz0iDmW5DglJen-TUPEiZDChPZg"
+                "&gen=9&apiKey=6yIzHUDni2r88yfbkuPCCDSW_EII_WdUUCZhxpS_3-I"  /* key is from ig@techies.it*/
     }
 
     /**
