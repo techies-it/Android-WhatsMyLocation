@@ -34,6 +34,11 @@ class ThanksFragment : Fragment() {
                 false
             )
 
+        /*MobileAds.initialize(activity) {}
+        mAdView = mBinding.root.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView?.loadAd(adRequest)*/
+
         // Initialise view model
         mViewModel = ViewModelProvider(this)
             .get(ThanksViewModel::class.java)
