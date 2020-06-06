@@ -22,6 +22,9 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -41,6 +44,7 @@ import it.techies.whatsmylocation.databinding.FragmentWelcomeBinding
 class WelcomeFragment : Fragment() {
 
     private lateinit var mBinder: FragmentWelcomeBinding
+    private var mAdView: AdView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +59,10 @@ class WelcomeFragment : Fragment() {
             false
         )
 
-        /*MobileAds.initialize(activity) {}
-        mAdView = mBinding.root.findViewById(R.id.adView)
+        MobileAds.initialize(activity) {}
+        mAdView = mBinder.root.findViewById(R.id.adViewWelcome)
         val adRequest = AdRequest.Builder().build()
-        mAdView?.loadAd(adRequest)*/
+        mAdView?.loadAd(adRequest)
 
 
         mBinder.btStart.setOnClickListener {

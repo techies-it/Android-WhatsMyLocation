@@ -55,10 +55,10 @@ class DashboardFragment : Fragment() {
             false
         )
 
-        /*MobileAds.initialize(activity) {}
-        mAdView = mBinding.root.findViewById(R.id.adView)
+        MobileAds.initialize(activity) {}
+        mAdView = mBinding.root.findViewById(R.id.adViewDashboard)
         val adRequest = AdRequest.Builder().build()
-        mAdView?.loadAd(adRequest)*/
+        mAdView?.loadAd(adRequest)
 
         val manager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.requireActivity())
@@ -123,7 +123,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun getDeviceLocation() {
-      //  mViewModel.onLocationPermissionGrant()
+        mViewModel.onLocationPermissionGrant()
     }
 
     private fun stopTracker() {

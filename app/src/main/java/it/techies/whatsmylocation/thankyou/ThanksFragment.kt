@@ -10,6 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import it.techies.whatsmylocation.R
 import it.techies.whatsmylocation.databinding.FragmentThanksBinding
 
@@ -19,6 +22,7 @@ import it.techies.whatsmylocation.databinding.FragmentThanksBinding
 class ThanksFragment : Fragment() {
 
     private lateinit var mViewModel: ThanksViewModel
+    private var mAdView: AdView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +38,10 @@ class ThanksFragment : Fragment() {
                 false
             )
 
-        /*MobileAds.initialize(activity) {}
-        mAdView = mBinding.root.findViewById(R.id.adView)
+        MobileAds.initialize(activity) {}
+        mAdView = mBinding.root.findViewById(R.id.adViewThanks)
         val adRequest = AdRequest.Builder().build()
-        mAdView?.loadAd(adRequest)*/
+        mAdView?.loadAd(adRequest)
 
         // Initialise view model
         mViewModel = ViewModelProvider(this)

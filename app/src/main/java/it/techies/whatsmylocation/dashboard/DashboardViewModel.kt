@@ -187,15 +187,6 @@ class DashboardViewModel(
 
 
     /**
-     * To handle location reading error
-     */
-    private fun onLocationError() {
-        _showLoader.value = LOADER_SHOW_NO
-        _address.value = "Searching..."
-        getLocation()
-    }
-
-    /**
      *  To trigger event tracker stop
      */
     fun onStopTracking() {
@@ -220,6 +211,7 @@ class DashboardViewModel(
      *  Location Permission Grant
      */
     fun onLocationPermissionGrant() {
+        isFirstTime = true
         getLocation()
     }
 
@@ -258,6 +250,7 @@ class DashboardViewModel(
             Log.d("Dash", error.message.toString())
         }
 
+        isFirstTime = true
         getLocation() // Get device location
 
     }
@@ -300,7 +293,7 @@ class DashboardViewModel(
     private fun getURL(lat: String, long: String): String {
         return "https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?" +
                 "prox=$lat%2C$long%2C100&mode=retrieveAddresses&maxresults=1" +
-                "&gen=9&apiKey=MgH9hsO4vTA36Kd-Dz0iDmW5DglJen-TUPEiZDChPZg"  /* key is from ig@techies.it*/
+                "&gen=9&apiKey=6yIzHUDni2r88yfbkuPCCDSW_EII_WdUUCZhxpS_3-I"  /* key is from ig@techies.it*/
     }
 
     /**
