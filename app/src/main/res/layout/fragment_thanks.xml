@@ -17,6 +17,17 @@
         android:background="@android:color/white"
         tools:context=".thankyou.ThanksFragment">
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewThanks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5305618781024223/4958879417">
+        </com.google.android.gms.ads.AdView>
+
         <ImageView
             android:id="@+id/iv_bg"
             android:layout_width="wrap_content"
@@ -78,7 +89,7 @@
             android:layout_marginStart="45dp"
             android:layout_marginEnd="45dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="73dp"
+            android:layout_marginBottom="69dp"
             android:layout_height="56dp"
             android:textSize="18sp"
             android:textAllCaps="false"

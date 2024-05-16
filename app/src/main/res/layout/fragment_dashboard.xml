@@ -21,14 +21,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/iv_traveler"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="44dp"
             android:src="@drawable/ic_dashboard_vector"/>
 
         <TextView
             android:id="@+id/tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/tv_title_you_are_at"
             android:fontFamily="@font/gilroy_extra_bold"
             android:layout_centerHorizontal="true"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_heading"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/roboto"
@@ -53,7 +53,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="227dp"
+            android:layout_height="207dp"
             android:id="@+id/bottom_bg"
             android:layout_alignParentBottom="true"
             android:src="@drawable/dashboard_bg"/>
@@ -66,19 +66,19 @@
             android:text="@string/tv_location_update_after"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/bottom_bg"
-            android:layout_marginBottom="68dp"
+            android:layout_marginBottom="62dp"
             android:textSize="16sp"
             android:fontFamily="@font/gilroy_medium"
             android:textColor="@color/sub_title_font"/>
 
         <TextView
             android:id="@+id/tv_time"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
+            android:layout_width="98dp"
+            android:layout_height="98dp"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:text="@{dashboardViewModel.currentTimeString}"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:fontFamily="@font/gilroy_light"
             android:layout_centerHorizontal="true"
             android:layout_alignTop="@+id/bottom_bg"
@@ -109,7 +109,7 @@
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="73dp"
+            android:layout_marginBottom="69dp"
             android:layout_marginEnd="45dp"
             android:layout_marginStart="45dp"
             android:textSize="18sp"
@@ -118,7 +118,7 @@
 
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
+            android:id="@+id/adViewDashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

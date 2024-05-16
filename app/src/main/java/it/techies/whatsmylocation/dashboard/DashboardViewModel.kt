@@ -1,20 +1,24 @@
 package it.techies.whatsmylocation.dashboard
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Criteria
 import android.location.Location
+import android.location.LocationManager
 import android.os.CountDownTimer
-import android.text.format.DateUtils
+import android.os.Looper
+import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import it.techies.whatsmylocation.Constants.Companion.COUNTDOWN_TIME
-import it.techies.whatsmylocation.Constants.Companion.DONE
 import it.techies.whatsmylocation.Constants.Companion.LOADER_SHOW_NO
 import it.techies.whatsmylocation.Constants.Companion.LOADER_SHOW_YES
 import it.techies.whatsmylocation.Constants.Companion.ONE_SECOND
@@ -25,12 +29,19 @@ import it.techies.whatsmylocation.api.VolleySingleton
 import org.json.JSONObject
 
 
-class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
+class DashboardViewModel(
+    context: Context,
+    manager: LocationManager,
+    fusedLocationClient: FusedLocationProviderClient
+) : ViewModel(), RequestAndErrorInit {
 
     private var mContext: Context = context
+    private var mManager: LocationManager = manager
 
     // To get device location
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var mFusedLocationClient = fusedLocationClient
+
+    var locationRequest: LocationRequest? = null
 
     // Timer to get location update
     private val timer: CountDownTimer
@@ -38,12 +49,14 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     // The String version of the current time
     private val _currentTimeString = MutableLiveData<String>()
     val currentTimeString: LiveData<String>
-    get() = _currentTimeString
+        get() = _currentTimeString
 
     // To set and get location address in string
     private val _address = MutableLiveData<String>()
     val address: LiveData<String>
         get() = _address
+
+    private var locationUpdated: Location? = null
 
     // To set and get device location
     private val _location = MutableLiveData<Location>()
@@ -60,17 +73,51 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     val showLoader: LiveData<Boolean>
         get() = _showLoader
 
+    private val _getLocationPermission = MutableLiveData<Boolean>()
+    val getLocationPermission: LiveData<Boolean>
+        get() = _getLocationPermission
+
+    var isFirstTime = false
+
     init {
 
-        // To get device current location
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext)
+        isFirstTime = true
+
+        locationRequest = LocationRequest()
+            .setFastestInterval(5000)
+            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+            .setSmallestDisplacement(10f)
+
         getLocation()
 
         // Timer to update device location after 2 minutes
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onFinish() {
-                getLocation() // Get device location
-                start() // restart timer
+                //getLocation() // Get device location
+                _showLoader.value = LOADER_SHOW_YES
+                _address.value = "Searching..."
+                if (ContextCompat.checkSelfPermission(
+                        mContext,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                    && mManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                ) {
+                    _location.value = locationUpdated
+                    getReverseGeocode()
+
+                } else {
+                    // Permission is not granted
+                    // Show dialog to get location permission
+                    Log.d("Dash", "Permission error")
+                    _location.value = null
+                    _address.value = "Searching..."
+                    _getLocationPermission.value = true
+
+                }
+
+                // restart timer
+                start()
+
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -79,7 +126,8 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
                  * timer is finished in milliseconds. Convert millisUntilFinished
                  * to seconds and assign it to _currentTimeString.
                  */
-                _currentTimeString.value = (millisUntilFinished / ONE_SECOND).toString() // Update timer value
+                _currentTimeString.value =
+                    (millisUntilFinished / ONE_SECOND).toString() // Update timer value
             }
 
         }.start()
@@ -98,28 +146,45 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     private fun getLocation() {
         _showLoader.value = LOADER_SHOW_YES
         _address.value = "Searching..."
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Got last known location. In some rare situations this can be null.
-                if (location != null) {
-                    _location.value = location
-                    getReverseGeocode()
-                }else{
-                    onLocationError()
-                }
-            }.addOnFailureListener {
-                onLocationError()
-            }
+
+        if (ContextCompat.checkSelfPermission(
+                mContext,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+            && mManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        ) {
+            mFusedLocationClient.requestLocationUpdates(
+                locationRequest, object : LocationCallback() {
+                    override fun onLocationResult(locationResult: LocationResult?) {
+                        locationResult ?: return
+                        for (location in locationResult.locations) {
+                            locationUpdated = location
+                            Log.d("Dash", "In Loop")
+                        }
+
+                        if (isFirstTime){
+                            Log.d("Dash", "First Time : true")
+                            _location.value = locationUpdated
+                            getReverseGeocode()
+                            isFirstTime = false
+                        }
+                    }
+                },
+                Looper.getMainLooper()
+            )
+
+        } else {
+            // Permission is not granted
+            // Show dialog to get location permission
+            Log.d("Dash", "Permission error")
+            _location.value = null
+            _address.value = "Searching..."
+            _getLocationPermission.value = true
+
+        }
+
     }
 
-    /**
-     * To handle location reading error
-     */
-    private fun onLocationError() {
-        _showLoader.value = LOADER_SHOW_NO
-        _address.value = "Searching..."
-        getLocation()
-    }
 
     /**
      *  To trigger event tracker stop
@@ -136,8 +201,18 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
     fun onStopTrackingFinish() {
         timer.cancel()
         _location.value = null
+        locationUpdated = null
         _address.value = "Searching..."
         _eventTrackerStop.value = TRACKER_STOP_NO
+    }
+
+    /**
+     *  To get device location on
+     *  Location Permission Grant
+     */
+    fun onLocationPermissionGrant() {
+        isFirstTime = true
+        getLocation()
     }
 
     /**
@@ -164,13 +239,18 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
         _showLoader.value = LOADER_SHOW_NO
         _address.value = "Searching..."
         if (error is TimeoutError || error is NoConnectionError || error is NetworkError) {
-            Toast.makeText(mContext, "Something went wrong with network!", Toast.LENGTH_SHORT).show()
-        } else if (error.networkResponse.statusCode == 401){
+            Toast.makeText(mContext, "Something went wrong with network!", Toast.LENGTH_SHORT)
+                .show()
+            Log.d("Dash", "Something went wrong with network!")
+        } else if (error.networkResponse.statusCode == 401) {
             Toast.makeText(mContext, "Something went wrong!", Toast.LENGTH_SHORT).show()
-        }else{
+            Log.d("Dash", "Error : 401")
+        } else {
             Toast.makeText(mContext, error.message, Toast.LENGTH_SHORT).show()
+            Log.d("Dash", error.message.toString())
         }
 
+        isFirstTime = true
         getLocation() // Get device location
 
     }
@@ -188,6 +268,7 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
      *  geocode of location of device
      */
     private fun getReverseGeocode() {
+        Log.d("Dash", "getReverseGeocode")
         val lat = location.value?.latitude.toString()
         val long = location.value?.longitude.toString()
         val json = object : JsonObjectRequest(Request.Method.GET, getURL(lat, long), null,
@@ -220,14 +301,14 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
      *  @param response - reverse geocode API response
      */
     private fun getAddress(response: JSONObject): String {
-       return response.getJSONObject("Response")
+        return response.getJSONObject("Response")
             .getJSONArray("View")
             .getJSONObject(0)
             .getJSONArray("Result")
             .getJSONObject(0)
             .getJSONObject("Location")
             .getJSONObject("Address")
-           .optString("Label")
+            .optString("Label")
 
 //        return data.optString("HouseNumber") + ", " +
 //                data.optString("Street") + ", " +
@@ -237,4 +318,5 @@ class DashboardViewModel(context: Context) : ViewModel(), RequestAndErrorInit {
 //                data.optString("State") + ", " +
 //                data.optString("Country")
     }
+
 }

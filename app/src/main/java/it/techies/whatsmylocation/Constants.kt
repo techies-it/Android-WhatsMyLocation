@@ -5,6 +5,9 @@ class Constants {
         // Request code for location permission
         const val MY_PERMISSIONS_ACCESS_FINE_LOCATION = 123
 
+        // For location enable
+        const val REQUEST_CODE_CHECK_SETTINGS = 10
+
         // Time when the game is over
         const val DONE = 0L
 
@@ -12,7 +15,7 @@ class Constants {
         const val ONE_SECOND = 1000L
 
         // Total time for the game
-        const val COUNTDOWN_TIME = 2*60*1000L
+        val COUNTDOWN_TIME = 2*60*1000L
 
         // Key timer start/stop
         const val TRACKER_STOP_YES = true
@@ -25,7 +28,6 @@ class Constants {
         // Key restart tracker
         const val RESTART_TRACKER_YES = true
         const val RESTART_TRACKER_NO = false
-
 
     }
 }
