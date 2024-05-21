@@ -3,12 +3,14 @@ package it.techies.whatsmylocation.dashboard
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -136,12 +138,6 @@ class DashboardFragment : Fragment(), RequestAndErrorInit {
             Toast.makeText(mContext, ask, Toast.LENGTH_SHORT).show()
         }
 
-        checkLocationPermission()
-        return mBinding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
         mViewModel.setAddress("Searching...")
         mBinding.adViewDashboard?.resume()
         locationCallback = object : LocationCallback() {
@@ -160,6 +156,9 @@ class DashboardFragment : Fragment(), RequestAndErrorInit {
                 }
             }
         }
+
+        checkLocationPermission()
+        return mBinding.root
     }
 
     override fun onPause() {
@@ -204,7 +203,7 @@ class DashboardFragment : Fragment(), RequestAndErrorInit {
             enableLocationSettings()
         } else {
             // Permission is denied
-            showDialog()
+            activity?.finish()
         }
     }
 
@@ -249,6 +248,7 @@ class DashboardFragment : Fragment(), RequestAndErrorInit {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            checkLocationPermission()
             return
         }
         fusedLocationClient.requestLocationUpdates(
@@ -325,7 +325,7 @@ class DashboardFragment : Fragment(), RequestAndErrorInit {
                 "Ok"
             ) { dialog, id -> //put your code that needed to be executed when okay is clicked
                 dialog.cancel()
-                checkLocationPermission()
+                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
             }
             .setNegativeButton(
                 "Cancel"

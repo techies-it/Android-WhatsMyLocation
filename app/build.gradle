@@ -7,12 +7,6 @@ apply plugin: 'com.google.gms.google-services'
 android {
     namespace 'it.techies.whatsmylocation'
     signingConfigs {
-        /*debug {
-            storeFile file('/home/androidtaran/TaranWork/OfficeProjects/2020/WhatsMyLocation/WhatsMyLocation.jks')
-            storePassword 'WhatsMyLocation'
-            keyAlias = 'WhatsMyLocation'
-            keyPassword 'WhatsMyLocation'
-        }*/
         release {
             storeFile file('/home/androidtaran/TaranWork/OfficeProjects/2020/WhatsMyLocation/WhatsMyLocation.jks')
             storePassword 'WhatsMyLocation'
@@ -28,8 +22,8 @@ android {
         applicationId "it.techies.whatsmylocation"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 2
-        versionName "1.01"
+        versionCode 3
+        versionName "1.02"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

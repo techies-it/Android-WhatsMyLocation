@@ -3,7 +3,6 @@ package it.techies.whatsmylocation
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import it.techies.whatsmylocation.dashboard.DashboardFragment
 import it.techies.whatsmylocation.dashboard.DashboardFragment.Companion.REQUEST_CHECK_SETTINGS
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
                 Activity.RESULT_CANCELED -> {
                     // The user chose not to make required location settings changes
-                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                 }
             }
         }

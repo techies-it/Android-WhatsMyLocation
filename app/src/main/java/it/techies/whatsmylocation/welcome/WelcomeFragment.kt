@@ -1,9 +1,11 @@
 package it.techies.whatsmylocation.welcome
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +23,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
-import it.techies.whatsmylocation.Constants.Companion.MY_PERMISSIONS_ACCESS_FINE_LOCATION
 import it.techies.whatsmylocation.MainActivity.Companion.SCREEN_WELCOME
 import it.techies.whatsmylocation.MainActivity.Companion.onScreen
 import it.techies.whatsmylocation.R
@@ -74,18 +75,14 @@ class WelcomeFragment : Fragment() {
             findNavController().navigate(R.id.action_welcomeFragment_to_dashboardFragment)
         }
 
-        return mBinder.root
-    }
-
-    override fun onResume() {
-        super.onResume()
         checkLocationPermission()
+        return mBinder.root
     }
 
     private fun checkLocationPermission() {
         when {
             ContextCompat.checkSelfPermission(
-                requireContext(),
+                requireActivity(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED -> {
                 // You can use the location directly
@@ -110,29 +107,7 @@ class WelcomeFragment : Fragment() {
             enableLocationSettings()
         } else {
             // Permission is denied
-            showDialog()
-        }
-    }
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out kotlin.String>,
-        grantResults: IntArray
-    ): Unit {
-        when (requestCode) {
-            MY_PERMISSIONS_ACCESS_FINE_LOCATION -> {
-                // If request is cancelled, the result arrays are empty.
-                if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                ) {
-                    enableLocationSettings()
-                } else {
-                    // permission denied, boo! Disable the
-                    showDialog()
-                }
-                return
-            }
+            activity?.finish()
         }
     }
 
@@ -185,7 +160,7 @@ class WelcomeFragment : Fragment() {
                 "Ok"
             ) { dialog, id -> //put your code that needed to be executed when okay is clicked
                 dialog.cancel()
-                checkLocationPermission()
+                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
             }
             .setNegativeButton(
                 "Cancel"
