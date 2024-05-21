@@ -13,4 +13,17 @@
     <string name="tv_sub_title_you_are_welcome">You are welcome to location\ntracking app.</string>
     <string name="bt_start_tracking">Start Tracking</string>
     <string name="tv_title_you_are_at">You are at</string>
+
+   <!--For Testing-->
+    <string name="APPLICATION_ID_TEST">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="UNIT_ID_TEST">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!--For Final-->
+    <string name="APPLICATION_ID_FINAL">ca-app-pub-5305618781024223~1155365775</string>
+    <string name="UNIT_ID_FINAL">ca-app-pub-5305618781024223/4958879417</string>
+
+    <!--Set Keys Value-->
+    <string name="APPLICATION_ID">@string/APPLICATION_ID_FINAL</string>
+    <string name="UNIT_ID">@string/UNIT_ID_FINAL</string>
+
 </resources>

@@ -1,17 +1,16 @@
 package it.techies.whatsmylocation.thankyou
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import it.techies.whatsmylocation.R
 import it.techies.whatsmylocation.databinding.FragmentThanksBinding
@@ -22,7 +21,6 @@ import it.techies.whatsmylocation.databinding.FragmentThanksBinding
 class ThanksFragment : Fragment() {
 
     private lateinit var mViewModel: ThanksViewModel
-    private var mAdView: AdView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +36,15 @@ class ThanksFragment : Fragment() {
                 false
             )
 
-        MobileAds.initialize(activity) {}
-        mAdView = mBinding.root.findViewById(R.id.adViewThanks)
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(requireActivity()) {}
+
+        // Create an ad request and load the ad
         val adRequest = AdRequest.Builder().build()
-        mAdView?.loadAd(adRequest)
+        mBinding.adViewThankYou.loadAd(adRequest)
 
         // Initialise view model
-        mViewModel = ViewModelProvider(this)
-            .get(ThanksViewModel::class.java)
+        mViewModel = ViewModelProvider(this)[ThanksViewModel::class.java]
 
         // Set the view model for data binding - this allows the bound layout access
         // to all the data in the ViewModel
