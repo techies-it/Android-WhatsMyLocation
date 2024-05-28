@@ -23,7 +23,7 @@
     <string name="UNIT_ID_FINAL">ca-app-pub-5305618781024223/4958879417</string>
 
     <!--Set Keys Value-->
-    <string name="APPLICATION_ID">@string/APPLICATION_ID_FINAL</string>
-    <string name="UNIT_ID">@string/UNIT_ID_FINAL</string>
+    <string name="APPLICATION_ID">@string/APPLICATION_ID_TEST</string>
+    <string name="UNIT_ID">@string/UNIT_ID_TEST</string>
 
 </resources>

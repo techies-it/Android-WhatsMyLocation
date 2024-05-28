@@ -8,7 +8,7 @@ android {
     namespace 'it.techies.whatsmylocation'
     signingConfigs {
         release {
-            storeFile file('/home/androidtaran/TaranWork/OfficeProjects/2020/WhatsMyLocation/WhatsMyLocation.jks')
+            storeFile file('/home/android/TaranWork/OfficeProjects/2024/WhatsMyLocation/WhatsMyLocation.jks')
             storePassword 'WhatsMyLocation'
             keyAlias = 'WhatsMyLocation'
             keyPassword 'WhatsMyLocation'
@@ -22,8 +22,8 @@ android {
         applicationId "it.techies.whatsmylocation"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 3
-        versionName "1.02"
+        versionCode 4
+        versionName "1.03"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
